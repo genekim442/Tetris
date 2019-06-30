@@ -37,10 +37,11 @@ function collide(arena, player) {
 }
 
 function createMatrix(w, h) {
+	
     const matrix = [];
     while (h--) {
         matrix.push(new Array(w).fill(0));
-    }
+	}
     return matrix;
 }
 
@@ -127,10 +128,10 @@ function rotate(matrix, dir) {
         for (let x = 0; x < y; ++x) {
             [
                 matrix[x][y],
-                matrix[y][x],
+                matrix[y][x]
             ] = [
                 matrix[y][x],
-                matrix[x][y],
+                matrix[x][y]
             ];
         }
     }
@@ -140,6 +141,7 @@ function rotate(matrix, dir) {
     } else {
         matrix.reverse();
     }
+
 }
 
 function playerDrop() {
@@ -162,7 +164,7 @@ function playerMove(offset) {
 }
 
 function playerReset() {
-    const pieces = 'TJLOSZI';
+    const pieces = 'JOTZISL';
     player.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
     player.pos.y = 0;
     player.pos.x = (arena[0].length / 2 | 0) -
@@ -190,9 +192,10 @@ function playerRotate(dir) {
 }
 
 let dropCounter = 0;
-let dropInterval = 1000;
+let dropInterval = 400;
 
 let lastTime = 0;
+
 function update(time = 0) {
     const deltaTime = time - lastTime;
 
@@ -202,6 +205,8 @@ function update(time = 0) {
     }
 
     lastTime = time;
+
+    
 
     draw();
     requestAnimationFrame(update);
